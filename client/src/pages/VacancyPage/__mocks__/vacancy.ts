@@ -22,5 +22,9 @@ export const vacancy: IJob = {
             level: 'Свободный'
         },
     ],
-    benefits: "<ul><li>Социальный пакет</li><li>ДМС</li></ul>"
+    benefits: "<ul><li>Социальный пакет</li><li>ДМС</li></ul>",
+    id: 39736,
+    status: 'published',
+    activeCandidates: 5,
+    passedCandidates: 3
 };
