@@ -29,7 +29,7 @@ interface IPublication {
 }
 
 export interface ICV {
-    name: string
+    fio: string
     label: string // Programmer, Designer, etc.
     area: string // web, descktop, ar/vr, ui/ux, etc
     dateOfBirth: string | Date
@@ -40,4 +40,5 @@ export interface ICV {
     languages: ILanguage[]
     salary?: ISalaryRate
     skills: string[],
+    id: number | string
 }

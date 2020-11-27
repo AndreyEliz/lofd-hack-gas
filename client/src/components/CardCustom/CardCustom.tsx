@@ -6,14 +6,17 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Theme } from '@material-ui/core/styles';
 
 interface CardCustomProps {
     title: string;
     defaultOpen?: boolean;
     className?: any;
+    avatar?: any;
+    collapsable?: boolean;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
     customCard: {
         margin: 20,
     },
@@ -32,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const CardCustom: React.FC<CardCustomProps> = ({title, className, defaultOpen=true, ...props}) => {
+const CardCustom: React.FC<CardCustomProps> = ({title, avatar, className, defaultOpen=true, collapsable=true, ...props}) => {
     const [expanded, setExpanded] = React.useState(defaultOpen);
 
     const classes = useStyles();
@@ -46,17 +49,20 @@ const CardCustom: React.FC<CardCustomProps> = ({title, className, defaultOpen=tr
     return (
         <Card className={wrapperClass}>
             <CardHeader
+                avatar={avatar}
                 action={
-                <IconButton
-                    className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                    })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
+                    collapsable ?
+                    <IconButton
+                        className={clsx(classes.expand, {
+                            [classes.expandOpen]: expanded,
+                        })}
+                        onClick={handleExpandClick}
+                        aria-expanded={expanded}
+                        aria-label="show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                    : undefined
                 }
                 title={<span className={classes.header}>{title}</span>}
             />

@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(() => ({
     input: {
         display: 'block',
         width: 400,
