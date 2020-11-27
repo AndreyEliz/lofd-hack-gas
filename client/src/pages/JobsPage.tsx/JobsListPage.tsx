@@ -12,7 +12,7 @@ const JobsPage: React.FC = () => {
 
     return (
         <div className={classes.jobsWrapper}>
-            {jobs.map((job) => <JobListItem data={job}/>)}
+            {jobs.map((job) => <JobListItem key={job.id} data={job}/>)}
         </div>
     );
 }

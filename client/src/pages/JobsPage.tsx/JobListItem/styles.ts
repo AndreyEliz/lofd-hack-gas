@@ -2,7 +2,12 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { IJob } from '../../../store/models/jobModel';
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    jobWrapper: {},
+    jobWrapper: {
+        width: 700
+    },
+    candidatesCount: {
+        color: theme.palette.info.dark
+    },
     avatar: {
         backgroundColor: (data: IJob) => {
             if (data.status === 'new') return theme.palette.success.main;
@@ -11,4 +16,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
             if (data.status === 'published') return theme.palette.info.main;
         }
     },
+    cardContent: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    jobSummary: {},
+    jobActions: {},
+    actionButtons: {
+        margin: 5
+    }
 }));
