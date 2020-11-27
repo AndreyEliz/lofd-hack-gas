@@ -13,13 +13,17 @@ const testJob: IJob = {
     benefits: '',
     activeCandidates: 5,
     passedCandidates: 1,
-    status: 'open',
+    status: 'new',
     id: 1
 }
 
 const JOBS: IJob[] = []
+JOBS.push({...testJob})
+JOBS.push({...testJob, status: 'open', id: 2})
+JOBS.push({...testJob, status: 'published', id: 3})
+JOBS.push({...testJob, status: 'closed', id: 4})
 
-for (let i = 1; i <= 11; i++) {
+for (let i = JOBS.length; i <= 10; i++) {
     JOBS.push({...testJob, id: i})
 }
 
