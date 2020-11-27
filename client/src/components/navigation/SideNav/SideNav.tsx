@@ -45,6 +45,9 @@ const SideNav: React.FC<SideNavProps> = ({onClose}) => {
             <ListItem button onClick={() => navigate('/test')}>
                 <ListItemText primary="test" />
             </ListItem>
+            <ListItem button onClick={() => navigate('/vacancy')}>
+                <ListItemText primary="Вакансия" />
+            </ListItem>
         </List>
     </>
     );

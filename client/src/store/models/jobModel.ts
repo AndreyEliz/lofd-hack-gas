@@ -1,7 +1,7 @@
-import { 
-    ILanguage, 
-    ISalaryRate, 
-    WorkType 
+import {
+    ILanguage,
+    ISalaryRate,
+    WorkType
 } from "./helpers";
 
 export interface IJob {
@@ -13,6 +13,6 @@ export interface IJob {
     mainSkills: string[]
     secondarySkills: string[]
     salaryRate?: ISalaryRate
-    languges?: ILanguage[]
+    languages?: ILanguage[]
     benefits?: string
 }
