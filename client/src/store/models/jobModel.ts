@@ -1,7 +1,7 @@
-import { 
-    ILanguage, 
-    ISalaryRate, 
-    WorkType 
+import {
+    ILanguage,
+    ISalaryRate,
+    WorkType
 } from "./helpers";
 
 type TJobStatus = 'new' | 'open' | 'published' | 'closed'
