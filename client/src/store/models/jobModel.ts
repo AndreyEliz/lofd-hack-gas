@@ -4,6 +4,7 @@ import {
     WorkType 
 } from "./helpers";
 
+type TJobStatus = 'new' | 'open' | 'published' | 'closed'
 export interface IJob {
     skillLevel?: string
     title: string
@@ -13,6 +14,10 @@ export interface IJob {
     mainSkills: string[]
     secondarySkills: string[]
     salaryRate?: ISalaryRate
-    languges?: ILanguage[]
+    languages?: ILanguage[]
     benefits?: string
+    id: number | string
+    status: TJobStatus
+    activeCandidates: number
+    passedCandidates: number
 }
