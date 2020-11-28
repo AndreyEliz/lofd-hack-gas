@@ -16,7 +16,8 @@ interface IChipsField {
 }
 
 interface IVacancyProps {
-    data: IJob
+    data: IJob,
+    defaultOpen?: boolean
 }
 
 const ChipsField = ({ classes, options, color = 'primary', id }: IChipsField) => {
@@ -35,7 +36,7 @@ const ChipsField = ({ classes, options, color = 'primary', id }: IChipsField) =>
     );
 };
 
-const Vacancy: React.FC<IVacancyProps> = ({data}) => {
+const Vacancy: React.FC<IVacancyProps> = ({data, defaultOpen=true}) => {
     const classes = useStyles();
 
     const {
@@ -59,7 +60,7 @@ const Vacancy: React.FC<IVacancyProps> = ({data}) => {
     const typeList = type && <ChipsField id='types' classes={classes} options={type.map((type: string) => `#${type}`)} color='default'/>;
 
     return (
-        <CardCustom title={`${title} (${skillLevel}) ... ${salary}`}>
+        <CardCustom defaultOpen={defaultOpen} title={`${title} (${skillLevel}) ... ${salary}`}>
             <Grid container spacing={2} className={classes.mainGrid}>
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>

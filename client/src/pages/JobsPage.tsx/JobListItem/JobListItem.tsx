@@ -49,7 +49,7 @@ const JobListItem: React.FC<IJobListItemProps> = ({data}) => {
                             variant="contained"
                             size="small"
                             color="primary"
-                            onClick={() => navigate(`/vacancy/${data.id}`)}
+                            onClick={() => navigate(`/manage-job/${data.id}`)}
                         >
                             Подробнее
                         </Button>
