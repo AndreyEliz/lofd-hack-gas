@@ -72,6 +72,7 @@ const VacancyStep = ({
             <Button
                 variant="contained"
                 component="label"
+                color="primary"
                 className={classes.uploadButton}
             >
                 Загрузить резюме
