@@ -9,16 +9,41 @@ import VacancyCoreData from 'components/Vacancy/VacancyCoreData';
 import Typography from '@material-ui/core/Typography';
 import ChipsField from 'components/ChipsField/ChipsField';
 import CandidateList from './CandidatesList/CandidatesList';
+import Button from '@material-ui/core/Button';
+import { makeStyles, Theme } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles((theme: Theme) => ({
+    actionButtons: {
+        margin: 5
+    }
+}));
 
 
 const ManageJobPage: React.FC = () => {
+    const classes = useStyles()
     const {id} = useParams()
     const vacancy: IJob = useSelector(selectJobList).find((job:IJob) => job.id == id)
 
     return (
         <div>
+            <Button
+                className={classes.actionButtons}
+                variant="contained"
+                size="small"
+                color="primary"
+            >
+                Опубликовать
+            </Button>
             <CardCustom title={vacancy.title} defaultOpen={false}>
                 <CardContent>
+                <Button
+                className={classes.actionButtons}
+                variant="contained"
+                size="small"
+                color="primary"
+            >
+                Редактировать
+            </Button>
                     {vacancy.type &&
                     <div>
                         <ChipsField options={vacancy.type.map((type: string) => `#${type}`)} color='default'/>

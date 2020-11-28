@@ -12,6 +12,8 @@ import { SKILL_LEVELS, WORK_TYPES } from 'constants/constants';
 import ReactHookFormRTE from 'components/form/ReachEditor/ReactHookFormRTE';
 import { SKILLS } from '../../constants/constants';
 import RHFSelectAutocomplete from '../../components/form/Select/RHFSelectAutocomplete';
+import CardCustom from 'components/CardCustom/CardCustom';
+import { CardContent } from '@material-ui/core';
 
 type Inputs = {
     title: string,
@@ -33,70 +35,74 @@ const CreateJobPage: React.FC = () => {
     const onSubmit = (data:any) => console.log(data);
  
     return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl className={classes.input}>
-            <TextField
-                label={'Вакансия'}
-                inputRef={register({ required: true })}
-                name="title"
-                variant="outlined"
-                fullWidth
-            />
-        </FormControl>
-        <ReactHookFormSelect
-            className={classes.input}
-            name="skillLevel"
-            label="Уровень"
-            defaultValue="Middle"
-            variant="outlined"
-            control={control}
-        >
-            {skillLevels}
-        </ReactHookFormSelect>
-        <ReactHookFormSelect
-            className={classes.input}
-            name="workType"
-            label="Tип занятости"
-            defaultValue={['Remote']}
-            variant="outlined"
-            selectProps={{multiple: true}}
-            control={control}
-        >
-            {workTypes}
-        </ReactHookFormSelect>
-        <RHFSelectAutocomplete
-            className={classes.input}
-            name="keySkills"
-            label="Ключевые навыки"
-            defaultValue={[]}
-            variant="outlined"
-            options={SKILLS}
-            control={control}
-        />
-        <RHFSelectAutocomplete
-            className={classes.input}
-            name="secondarySkills"
-            label="Желательно также"
-            defaultValue={[]}
-            variant="outlined"
-            options={SKILLS}
-            control={control}
-        />
-        <ReactHookFormRTE
-            name="summaryRTE"
-            label="Дополнительная информация"
-            control={control}
-            defaultValue=""
-        />
-        <Button
-            className={classes.submitBtn}
-            type="submit"
-            variant="contained"
-            color="primary"
-        >
-            Подтвердить
-        </Button>
-    </form>
+        <CardCustom title="Подать заявку">
+            <CardContent>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <FormControl className={classes.input}>
+                        <TextField
+                            label={'Вакансия'}
+                            inputRef={register({ required: true })}
+                            name="title"
+                            variant="outlined"
+                            fullWidth
+                        />
+                    </FormControl>
+                    <ReactHookFormSelect
+                        className={classes.input}
+                        name="skillLevel"
+                        label="Уровень"
+                        defaultValue="Middle"
+                        variant="outlined"
+                        control={control}
+                    >
+                        {skillLevels}
+                    </ReactHookFormSelect>
+                    <ReactHookFormSelect
+                        className={classes.input}
+                        name="workType"
+                        label="Tип занятости"
+                        defaultValue={['Remote']}
+                        variant="outlined"
+                        selectProps={{multiple: true}}
+                        control={control}
+                    >
+                        {workTypes}
+                    </ReactHookFormSelect>
+                    <RHFSelectAutocomplete
+                        className={classes.input}
+                        name="keySkills"
+                        label="Ключевые навыки"
+                        defaultValue={[]}
+                        variant="outlined"
+                        options={SKILLS}
+                        control={control}
+                    />
+                    <RHFSelectAutocomplete
+                        className={classes.input}
+                        name="secondarySkills"
+                        label="Желательно также"
+                        defaultValue={[]}
+                        variant="outlined"
+                        options={SKILLS}
+                        control={control}
+                    />
+                    <ReactHookFormRTE
+                        name="summaryRTE"
+                        label="Дополнительная информация"
+                        control={control}
+                        defaultValue=""
+                    />
+                    <Button
+                        className={classes.submitBtn}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                    >
+                        Подтвердить
+                    </Button>
+                </form>
+            </CardContent>
+        </CardCustom>
     );
 }
 
