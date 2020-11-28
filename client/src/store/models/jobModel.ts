@@ -20,4 +20,6 @@ export interface IJob {
     status: TJobStatus
     activeCandidates: number
     passedCandidates: number
+    openDate: Date
+    publishedDate?: Date
 }

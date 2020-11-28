@@ -42,6 +42,7 @@ console.log('▓▓▓create job:', data);
             status: 'new',
             activeCandidates: 0,
             passedCandidates: 0,
+            openDate: new Date(),
             id:0
         }))
     };

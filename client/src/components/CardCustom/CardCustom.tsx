@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -9,11 +9,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Theme } from '@material-ui/core/styles';
 
 interface CardCustomProps {
-    title: string;
+    title?: string | ReactElement;
     defaultOpen?: boolean;
     className?: any;
     avatar?: any;
     collapsable?: boolean;
+    noHeader?: boolean;
 }
 
 const useStyles = makeStyles((theme:Theme) => ({
@@ -39,8 +40,9 @@ const CardCustom: React.FC<CardCustomProps> = ({
     title,
     avatar,
     className,
-    defaultOpen=true,
-    collapsable=true,
+    defaultOpen = true,
+    collapsable = true,
+    noHeader = false,
     ...props
 }) => {
     const [expanded, setExpanded] = React.useState(defaultOpen);
@@ -55,10 +57,11 @@ const CardCustom: React.FC<CardCustomProps> = ({
         setExpanded(!expanded);
     };
 
-    const wrapperClass = clsx(classes.customCard, className)
+    const wrapperClass = clsx(classes.customCard, className);
 
     return (
         <Card className={wrapperClass}>
+            {!noHeader &&
             <CardHeader
                 avatar={avatar}
                 action={
@@ -76,7 +79,7 @@ const CardCustom: React.FC<CardCustomProps> = ({
                     : undefined
                 }
                 title={<span className={classes.header}>{title}</span>}
-            />
+            />}
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 {props.children}
             </Collapse>
