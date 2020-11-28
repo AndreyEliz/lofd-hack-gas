@@ -30,6 +30,7 @@ interface IPublication {
     publisher: string
     releaseDate: string | Date
     summary: string
+    id: string | number
 }
 
 export interface ICV {
@@ -37,13 +38,18 @@ export interface ICV {
     label: string // Programmer, Designer, etc.
     area: string // web, descktop, ar/vr, ui/ux, etc
     dateOfBirth: string | Date
-    contacts: IContacts[]
+    contacts: IContacts
     education: IEducation[]
-    awards: IAwards[]
+    awards?: IAwards[]
     publications?: IPublication[]
     publication?: IPublication[]
     languages: ILanguage[]
     salary?: ISalaryRate
     skills: string[],
     id: number | string
+    internal: boolean
+    status: string
+    source: string
+    quality: number
+    type?: any
 }

@@ -34,16 +34,16 @@ const ManageJobPage: React.FC = () => {
             >
                 Опубликовать
             </Button>
-            <CardCustom title={vacancy.title} defaultOpen={false}>
+            <CardCustom title={`${vacancy.title} - ${vacancy.skillLevel}`} defaultOpen={false}>
                 <CardContent>
                 <Button
-                className={classes.actionButtons}
-                variant="contained"
-                size="small"
-                color="primary"
-            >
-                Редактировать
-            </Button>
+                    className={classes.actionButtons}
+                    variant="contained"
+                    size="small"
+                    color="primary"
+                >
+                    Редактировать
+                </Button>
                     {vacancy.type &&
                     <div>
                         <ChipsField options={vacancy.type.map((type: string) => `#${type}`)} color='default'/>
