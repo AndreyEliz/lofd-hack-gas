@@ -10,11 +10,13 @@ interface IContacts {
 }
 
 interface IEducation {
+    id: string | number
     title: string
     area: string // Computer Science, engeneering, etc
     degree: string // Specialist, Bachelor, Master, Phd, etc
     startDate: string | Date
     endDate: string | Date
+    candidateId?: string | number
 }
 
 interface IAwards {

@@ -19,7 +19,15 @@ export const CANDIDATES: ICV[] = [
           "candidateId": 1
         }
       ],
-      "education": [],
+      "education": [{
+        "id": 1,
+        "title": "???",
+        "area": "????????????????",
+        "degree": "????????",
+        "startDate": "2015-01-01T00:00:00",
+        "endDate": "2020-01-10T00:00:00",
+        "candidateId": 1
+      }],
       "languages": [],
       "publication": [],
       "skills": []
