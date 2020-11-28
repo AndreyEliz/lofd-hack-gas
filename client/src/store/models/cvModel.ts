@@ -5,6 +5,8 @@ interface IContacts {
     phone: string
     skype: string
     site: string
+    id?: string | number
+    candidateId? : string | number
 }
 
 interface IEducation {
@@ -33,10 +35,11 @@ export interface ICV {
     label: string // Programmer, Designer, etc.
     area: string // web, descktop, ar/vr, ui/ux, etc
     dateOfBirth: string | Date
-    contacts: IContacts
+    contacts: IContacts[]
     education: IEducation[]
     awards: IAwards[]
-    publications: IPublication[]
+    publications?: IPublication[]
+    publication?: IPublication[]
     languages: ILanguage[]
     salary?: ISalaryRate
     skills: string[],
