@@ -3,6 +3,7 @@ import { IJob } from 'store/models/jobModel';
 import { useStyles } from './styles';
 import { ClassNameMap } from '@material-ui/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {ILanguage} from "store/models/helpers";
 import Chip from '@material-ui/core/Chip';
@@ -83,6 +84,18 @@ const Vacancy: React.FC<IVacancyProps> = ({data, defaultOpen=true}) => {
                                     Бонусы: <div dangerouslySetInnerHTML={{ __html: benefits }} />
                                 </Typography>
                             )}
+                            <Button
+                                variant="contained"
+                                component="label"
+                            >
+                                Загрузить резюме
+                                <input
+                                    name='cv'
+                                    type="file"
+                                    hidden
+                                    accept=".pdf, .doc, .docx"
+                                />
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
