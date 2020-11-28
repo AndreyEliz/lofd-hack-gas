@@ -14,13 +14,15 @@ import { SKILLS } from '../../constants/constants';
 import RHFSelectAutocomplete from '../../components/form/Select/RHFSelectAutocomplete';
 import CardCustom from 'components/CardCustom/CardCustom';
 import { CardContent } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { addNewJob } from 'actions/jobs.actions';
 
 type Inputs = {
     title: string,
     skillLevel: string,
-    workType: WorkType[],
-    summaryRTE: string[],
-    keySkills: string[],
+    type: WorkType[],
+    summary: string,
+    mainSkills: string[],
     secondarySkills: string[]
 };
 
@@ -31,8 +33,18 @@ const CreateJobPage: React.FC = () => {
     const [newJob, setNewJob] = React.useState<IJob | null>(null)
     const { register, handleSubmit, errors, control } = useForm<Inputs>();
     const classes = useStyles()
+    const dispatch = useDispatch()
 
-    const onSubmit = (data:any) => console.log(data);
+    const onSubmit = (data:Inputs) => {
+        console.log(data);
+        dispatch(addNewJob({
+            ...data,
+            status: 'new',
+            activeCandidates: 0,
+            passedCandidates: 0,
+            id:0
+        }))
+    }
  
     return (
         <CardCustom title="Подать заявку">
@@ -59,7 +71,7 @@ const CreateJobPage: React.FC = () => {
                     </ReactHookFormSelect>
                     <ReactHookFormSelect
                         className={classes.input}
-                        name="workType"
+                        name="type"
                         label="Tип занятости"
                         defaultValue={['Remote']}
                         variant="outlined"
@@ -70,7 +82,7 @@ const CreateJobPage: React.FC = () => {
                     </ReactHookFormSelect>
                     <RHFSelectAutocomplete
                         className={classes.input}
-                        name="keySkills"
+                        name="mainSkills"
                         label="Ключевые навыки"
                         defaultValue={[]}
                         variant="outlined"
@@ -87,7 +99,7 @@ const CreateJobPage: React.FC = () => {
                         control={control}
                     />
                     <ReactHookFormRTE
-                        name="summaryRTE"
+                        name="summary"
                         label="Дополнительная информация"
                         control={control}
                         defaultValue=""
