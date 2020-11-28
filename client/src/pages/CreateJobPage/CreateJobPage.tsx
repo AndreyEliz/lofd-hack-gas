@@ -42,6 +42,7 @@ const CreateJobPage: React.FC = () => {
             status: 'new',
             activeCandidates: 0,
             passedCandidates: 0,
+            openDate: new Date(),
             id:0
         }))
     }

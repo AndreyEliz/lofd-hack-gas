@@ -5,5 +5,8 @@ export const useStyles = makeStyles(() => ({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
+    },
+    filters:{
+        width: 1360
     }
 }));

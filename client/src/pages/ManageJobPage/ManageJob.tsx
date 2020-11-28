@@ -11,6 +11,8 @@ import ChipsField from 'components/ChipsField/ChipsField';
 import CandidateList from './CandidatesList/CandidatesList';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import PublicIcon from '@material-ui/icons/Public';
+import EditIcon from '@material-ui/icons/Edit';
 
 export const useStyles = makeStyles((theme: Theme) => ({
     actionButtons: {
@@ -26,24 +28,26 @@ const ManageJobPage: React.FC = () => {
 
     return (
         <div>
-            <Button
-                className={classes.actionButtons}
-                variant="contained"
-                size="small"
-                color="primary"
-            >
-                Опубликовать
-            </Button>
             <CardCustom title={`${vacancy.title} - ${vacancy.skillLevel}`} defaultOpen={false}>
                 <CardContent>
-                <Button
-                    className={classes.actionButtons}
-                    variant="contained"
-                    size="small"
-                    color="primary"
-                >
-                    Редактировать
-                </Button>
+                    <Button
+                        className={classes.actionButtons}
+                        variant="contained"
+                        size="small"
+                        color="primary"
+                        startIcon={<EditIcon />}
+                    >
+                        Редактировать
+                    </Button>
+                    <Button
+                        className={classes.actionButtons}
+                        variant="contained"
+                        size="small"
+                        color="primary"
+                        startIcon={<PublicIcon />}
+                    >
+                        Опубликовать
+                    </Button>
                     {vacancy.type &&
                     <div>
                         <ChipsField options={vacancy.type.map((type: string) => `#${type}`)} color='default'/>
