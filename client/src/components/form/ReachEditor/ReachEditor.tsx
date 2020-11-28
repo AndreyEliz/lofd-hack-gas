@@ -27,12 +27,12 @@ const ReachEditor: React.FC<IReachEditorProps> = ({onChange, label}) => {
 
     return (
         <div className={classes.editorWrapper}>
-        <MUIRichTextEditor
-            label={label}
-            controls={controls}
-            onChange={onRTEChange}
-            toolbarButtonSize="small"
-        />
+            <MUIRichTextEditor
+                label={label}
+                controls={controls}
+                onChange={onRTEChange}
+                toolbarButtonSize="small"
+            />
         </div>
     );
 }

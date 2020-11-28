@@ -42,11 +42,14 @@ const SideNav: React.FC<SideNavProps> = ({onClose}) => {
         </div>
         <Divider />
         <List component="nav" >
-            <ListItem button onClick={() => navigate('/test')}>
-                <ListItemText primary="test" />
+            <ListItem button onClick={() => navigate('/create')}>
+                <ListItemText primary="Генератор заявки" />
             </ListItem>
             <ListItem button onClick={() => navigate('/vacancy')}>
                 <ListItemText primary="Вакансия" />
+            </ListItem>
+            <ListItem button onClick={() => navigate('/jobs')}>
+                <ListItemText primary="Заявки" />
             </ListItem>
             <ListItem button onClick={() => navigate('/sandbox')}>
                 <ListItemText primary="Песочница" />
