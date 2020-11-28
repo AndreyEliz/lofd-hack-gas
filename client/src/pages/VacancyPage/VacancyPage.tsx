@@ -49,7 +49,6 @@ const VacancyPage: React.FC = () => {
 
     return (
         <div>
-            {timeLineData.value}
             <TimeLineField
                 index={timeLineData.value}
                 indexClick={handleIndexClick}
