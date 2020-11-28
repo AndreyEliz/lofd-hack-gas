@@ -10,7 +10,7 @@ import { useStyles } from './styles';
 import { WorkType } from 'store/models/helpers';
 import { SKILL_LEVELS, WORK_TYPES } from 'constants/constants';
 import ReactHookFormRTE from 'components/form/ReachEditor/ReactHookFormRTE';
-import { KEY_SKILLS } from '../../constants/constants';
+import { SKILLS } from '../../constants/constants';
 import RHFSelectAutocomplete from '../../components/form/Select/RHFSelectAutocomplete';
 
 type Inputs = {
@@ -19,6 +19,7 @@ type Inputs = {
     workType: WorkType[],
     summaryRTE: string[],
     keySkills: string[],
+    secondarySkills: string[]
 };
 
 const skillLevels = SKILL_LEVELS.map((item:string) => <MenuItem key={item} value={item}>{item}</MenuItem>)
@@ -69,7 +70,16 @@ const CreateJobPage: React.FC = () => {
             label="Ключевые навыки"
             defaultValue={[]}
             variant="outlined"
-            options={KEY_SKILLS}
+            options={SKILLS}
+            control={control}
+        />
+        <RHFSelectAutocomplete
+            className={classes.input}
+            name="secondarySkills"
+            label="Желательно также"
+            defaultValue={[]}
+            variant="outlined"
+            options={SKILLS}
             control={control}
         />
         <ReactHookFormRTE
