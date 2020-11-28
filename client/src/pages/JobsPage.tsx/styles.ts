@@ -8,5 +8,14 @@ export const useStyles = makeStyles(() => ({
     },
     filters:{
         width: 1360
+    },
+    gridCard: {
+        padding: 0,
+        width: 1360
+    },
+    gridCardContent: {
+        height: 500,
+        width: '100%',
+        padding:0
     }
 }));
