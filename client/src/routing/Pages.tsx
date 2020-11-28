@@ -5,6 +5,7 @@ import CreateJobPage from '../pages/CreateJobPage/CreateJobPage';
 import JobsPage from '../pages/JobsPage.tsx/JobsListPage';
 import VacancyPage from 'pages/VacancyPage/VacancyPage';
 import ManageJobPage from 'pages/ManageJobPage/ManageJob';
+import SandboxPage from 'pages/SandBoxPage/SandboxPage';
 
 const Pages: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ const Pages: React.FC = () => {
             <Route exact path="/create" component={CreateJobPage} />
             <Route exact path="/manage-job/:id" component={ManageJobPage} />
             <Route exact path="/jobs" component={JobsPage} />
+            <Route exact path="/sandbox" component={SandboxPage} />
         </Switch>
     );
 };
