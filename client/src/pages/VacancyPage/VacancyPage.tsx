@@ -46,7 +46,6 @@ console.log('▓▓▓Files:', files);
 
     return (
         <div>
-            {timeLineData.value}
             <TimeLineField
                 index={timeLineData.value}
                 indexClick={handleIndexClick}
