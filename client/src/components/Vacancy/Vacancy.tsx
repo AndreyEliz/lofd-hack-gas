@@ -3,6 +3,7 @@ import { IJob } from 'store/models/jobModel';
 import { useStyles } from './styles';
 import { ClassNameMap } from '@material-ui/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {ILanguage} from "store/models/helpers";
 import Chip from '@material-ui/core/Chip';
@@ -12,6 +13,7 @@ interface IChipsField {
     classes: ClassNameMap<any>;
     options: string[];
     color?: 'primary' | 'secondary' | 'default';
+    id: string;
 }
 
 interface IVacancyProps {
@@ -19,11 +21,12 @@ interface IVacancyProps {
     defaultOpen?: boolean
 }
 
-const ChipsField = ({ classes, options, color = 'primary' }: IChipsField) => {
+const ChipsField = ({ classes, options, color = 'primary', id }: IChipsField) => {
     return (
         <div className={classes.wrapperChips}>
-            {options.map((option: string) => (
+            {options.map((option: string, idx: number) => (
                 <Chip
+                    key={`chip-${id}-${idx}`}
                     label={option}
                     color={color}
                     variant="outlined"
@@ -47,15 +50,15 @@ const Vacancy: React.FC<IVacancyProps> = ({data, defaultOpen=true}) => {
         salaryRate,
         languages,
         benefits
-    } = data
-    
-    const salary = salaryRate ? `${salaryRate.from || '...'} ~ ${salaryRate.to || '...'} $` : '';
+    } = data;
+
+    const salary = salaryRate ? `${salaryRate.from || '...'} ~ ${salaryRate.to || '...'} руб.` : '';
     const languagesList = languages && (
-        <ChipsField classes={classes} options={languages.map(({name, level}: ILanguage) => `${name}: ${level.toLowerCase()}`)}/>
+        <ChipsField id='languages' classes={classes} options={languages.map(({name, level}: ILanguage) => `${name}: ${level.toLowerCase()}`)}/>
     );
-    const mainSkillsList = mainSkills && <ChipsField classes={classes} options={mainSkills}/>;
-    const secondarySkillsList = secondarySkills && <ChipsField classes={classes} options={secondarySkills} color='secondary'/>;
-    const typeList = type && <ChipsField classes={classes} options={type.map((type: string) => `#${type}`)} color='default'/>;
+    const mainSkillsList = mainSkills && <ChipsField id='main-skillss' classes={classes} options={mainSkills}/>;
+    const secondarySkillsList = secondarySkills && <ChipsField id='secondary-skills' classes={classes} options={secondarySkills} color='secondary'/>;
+    const typeList = type && <ChipsField id='types' classes={classes} options={type.map((type: string) => `#${type}`)} color='default'/>;
 
     return (
         <CardCustom defaultOpen={defaultOpen} title={`${title} (${skillLevel}) ... ${salary}`}>
@@ -65,7 +68,7 @@ const Vacancy: React.FC<IVacancyProps> = ({data, defaultOpen=true}) => {
                         <Grid item xs>
                             <Typography variant="body2" gutterBottom>
                                 {typeList}
-                                Описание: {summary}
+                                <div dangerouslySetInnerHTML={{ __html: summary }} />
                             </Typography>
                             <Typography variant="body2" color="textSecondary">Основные скиллы: {mainSkillsList}</Typography>
                             <Typography variant="body2" color="textSecondary">
@@ -78,9 +81,21 @@ const Vacancy: React.FC<IVacancyProps> = ({data, defaultOpen=true}) => {
                             )}
                             {benefits && (
                                 <Typography variant="body2" color="textSecondary">
-                                    Бонусы: {benefits}
+                                    Бонусы: <div dangerouslySetInnerHTML={{ __html: benefits }} />
                                 </Typography>
                             )}
+                            <Button
+                                variant="contained"
+                                component="label"
+                            >
+                                Загрузить резюме
+                                <input
+                                    name='cv'
+                                    type="file"
+                                    hidden
+                                    accept=".pdf, .doc, .docx"
+                                />
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>

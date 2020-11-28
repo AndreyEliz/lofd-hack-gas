@@ -5,7 +5,6 @@ import { IJob } from 'store/models/jobModel';
 import JobListItem from './JobListItem/JobListItem';
 import { useStyles } from './styles';
 
-
 const JobsPage: React.FC = () => {
     const classes = useStyles()
     const jobs: IJob[] = useSelector(selectJobList)
