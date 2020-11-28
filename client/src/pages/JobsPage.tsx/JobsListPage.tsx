@@ -14,6 +14,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import Tooltip from '@material-ui/core/Tooltip';
 import { DataGrid } from '@material-ui/data-grid';
 import Button from '@material-ui/core/Button';
+import { useLocation } from 'hooks/router.hooks';
 
 const columns = [
     { field: 'title', headerName: 'Позиция', width: 200},
@@ -38,6 +39,7 @@ const JobsPage: React.FC = () => {
         published: false,
         closed: false,
     });
+    const {navigate} = useLocation()
     const [gridView, setGridView] = React.useState(false)
     const toggleView = () =>  setGridView(!gridView)
 
@@ -111,10 +113,9 @@ const JobsPage: React.FC = () => {
         :
         <CardCustom collapsable={false} className={classes.gridCard} noHeader={true}>
             <CardContent className={classes.gridCardContent}>
-                <DataGrid rows={jobList} columns={columns} pageSize={5} checkboxSelection />
+                <DataGrid rows={jobList} columns={columns} pageSize={5} checkboxSelection onRowClick={(row:any) => navigate(`/manage-job/${row.data.id}`)}/>
             </CardContent>
         </CardCustom>
-        
         }
         
         </>
