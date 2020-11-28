@@ -10,6 +10,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { useLocation } from 'hooks/router.hooks';
 
 interface IJobListItemProps {
     data: IJob
@@ -17,6 +18,7 @@ interface IJobListItemProps {
 
 const JobListItem: React.FC<IJobListItemProps> = ({data}) => {
     const classes = useStyles(data)
+    const {navigate} = useLocation()
 
     return (
         <div className={classes.jobWrapper}>
@@ -47,6 +49,7 @@ const JobListItem: React.FC<IJobListItemProps> = ({data}) => {
                             variant="contained"
                             size="small"
                             color="primary"
+                            onClick={() => navigate(`/vacancy/${data.id}`)}
                         >
                             Подробнее
                         </Button>
