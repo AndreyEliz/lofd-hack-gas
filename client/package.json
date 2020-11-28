@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/data-grid": "^4.0.0-alpha.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
-    "@material-ui/data-grid": "^4.0.0-alpha.10",
     "clsx": "^1.1.1",
     "draft-convert": "^2.1.10",
     "mui-rte": "1.24.0",

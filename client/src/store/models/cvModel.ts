@@ -22,7 +22,7 @@ interface IEducation {
 interface IAwards {
     title: string
     date: string | Date
-    summary: string  
+    summary: string
 }
 
 interface IPublication {
@@ -36,7 +36,7 @@ interface IPublication {
 export interface ICV {
     fio: string
     label: string // Programmer, Designer, etc.
-    area: string // web, descktop, ar/vr, ui/ux, etc
+    area: string // web, desktop, ar/vr, ui/ux, etc
     dateOfBirth: string | Date
     contacts: IContacts
     education: IEducation[]

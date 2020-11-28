@@ -11,7 +11,7 @@ interface IJobListState {
 
 const initialState: IJobListState = {
     jobs: JOBS // []
-}
+};
 
 
 const jobList = (state=initialState, action: any) => {
@@ -20,11 +20,11 @@ const jobList = (state=initialState, action: any) => {
         [ADD_NEW_JOB]: () => ({
             ...state,
             jobs: [...state.jobs, {...action.data, id: state.jobs.length+1, status: 'new'}]}),
-    }
+    };
 
     return (reducers[action.type]  && reducers[action.type]()) || state
 };
 
-export const selectJobList = (state: any) => state.jobList.jobs
+export const selectJobList = (state: any) => state.jobList.jobs;
 
 export default jobList;

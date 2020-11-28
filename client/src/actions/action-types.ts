@@ -5,3 +5,4 @@ export const LOGOUT = 'LOGOUT';
 export const GET_JOBS_LIST = 'GET_JOBS_LIST';
 export const ADD_NEW_JOB = 'ADD_NEW_JOB';
 export const GET_CANDIDATES_LIST = 'GET_CANDIDATES_LIST';
+export const ADD_NEW_CANDIDATE = 'ADD_NEW_CANDIDATE';
