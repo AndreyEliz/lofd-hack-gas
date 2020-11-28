@@ -19,7 +19,8 @@ const candidatesList = (state=initialState, action: any) => {
         [GET_CANDIDATES_LIST]: () => ({...state, candidates: action.data}),
         [ADD_NEW_CANDIDATE]: () => ({
             ...state,
-            jobs: [...state.candidates, {...action.data, id: state.candidates.length+1, status: 'new'}]}),
+            candidates: [...state.candidates, {...action.data, id: state.candidates.length+1}]
+        })
     };
 
     return (reducers[action.type]  && reducers[action.type]()) || state

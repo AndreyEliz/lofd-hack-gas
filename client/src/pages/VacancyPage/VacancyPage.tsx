@@ -7,6 +7,8 @@ import TimeLineField from 'components/TimeLineField/TimeLineField';
 import VacancyStep from 'components/VacancyStep/VacancyStep';
 import CVStep from 'components/CVStep/CVStep';
 import OtherStep from 'components/OtherStep/OtherStep';
+import { postFile } from 'sfapi';
+import { API_URL } from 'config';
 
 interface TimeLineData {
     value: number;
@@ -31,8 +33,9 @@ const VacancyPage: React.FC = () => {
         updateStep(nextStep);
     };
     const handleSend = (e: ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-console.log('▓▓▓Files:', files);
+        const files: any = e.target.files;
+        console.log('▓▓▓Files:', files);
+        postFile(`${API_URL}/api/candidates/uploadCsv`, files[0])
         doNextStep(1);
     };
     const handleSubmitCV = () => {
