@@ -7,4 +7,8 @@ export const useStyles = makeStyles((theme) => ({
     mainGrid: {
         padding: theme.spacing(2),
     },
+    uploadButton: {
+        float: 'right',
+        marginRight: theme.spacing(4),
+    }
 }));
