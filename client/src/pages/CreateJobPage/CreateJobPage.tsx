@@ -10,7 +10,7 @@ import { useStyles } from './styles';
 import { WorkType } from 'store/models/helpers';
 import { SKILL_LEVELS, WORK_TYPES } from 'constants/constants';
 import ReactHookFormRTE from 'components/form/ReachEditor/ReactHookFormRTE';
-import { SKILLS } from '../../constants/constants';
+import { SKILLS } from 'constants/constants';
 import RHFSelectAutocomplete from '../../components/form/Select/RHFSelectAutocomplete';
 import CardCustom from 'components/CardCustom/CardCustom';
 import { CardContent } from '@material-ui/core';
@@ -26,17 +26,17 @@ type Inputs = {
     secondarySkills: string[]
 };
 
-const skillLevels = SKILL_LEVELS.map((item:string) => <MenuItem key={item} value={item}>{item}</MenuItem>)
-const workTypes = WORK_TYPES.map((item:string) => <MenuItem key={item} value={item}>{item}</MenuItem>)
+const skillLevels = SKILL_LEVELS.map((item:string) => <MenuItem key={item} value={item}>{item}</MenuItem>);
+const workTypes = WORK_TYPES.map((item:string) => <MenuItem key={item} value={item}>{item}</MenuItem>);
 
 const CreateJobPage: React.FC = () => {
-    const [newJob, setNewJob] = React.useState<IJob | null>(null)
+    const [newJob, setNewJob] = React.useState<IJob | null>(null);
     const { register, handleSubmit, errors, control } = useForm<Inputs>();
-    const classes = useStyles()
-    const dispatch = useDispatch()
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
     const onSubmit = (data:Inputs) => {
-        console.log(data);
+console.log('▓▓▓create job:', data);
         dispatch(addNewJob({
             ...data,
             status: 'new',
@@ -45,8 +45,8 @@ const CreateJobPage: React.FC = () => {
             openDate: new Date(),
             id:0
         }))
-    }
- 
+    };
+
     return (
         <CardCustom title="Подать заявку">
             <CardContent>
@@ -117,6 +117,6 @@ const CreateJobPage: React.FC = () => {
             </CardContent>
         </CardCustom>
     );
-}
+};
 
 export default CreateJobPage;

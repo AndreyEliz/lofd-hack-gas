@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -36,8 +36,20 @@ const useStyles = makeStyles((theme:Theme) => ({
     }
 }));
 
-const CardCustom: React.FC<CardCustomProps> = ({title, avatar, className, defaultOpen=true, collapsable=true, noHeader=false, ...props}) => {
+const CardCustom: React.FC<CardCustomProps> = ({
+    title,
+    avatar,
+    className,
+    defaultOpen = true,
+    collapsable = true,
+    noHeader = false,
+    ...props
+}) => {
     const [expanded, setExpanded] = React.useState(defaultOpen);
+
+    useEffect(() => {
+        setExpanded(defaultOpen);
+    }, [defaultOpen]);
 
     const classes = useStyles();
 
@@ -45,8 +57,8 @@ const CardCustom: React.FC<CardCustomProps> = ({title, avatar, className, defaul
         setExpanded(!expanded);
     };
 
-    const wrapperClass = clsx(classes.customCard, className)
- 
+    const wrapperClass = clsx(classes.customCard, className);
+
     return (
         <Card className={wrapperClass}>
             {!noHeader &&
@@ -73,6 +85,6 @@ const CardCustom: React.FC<CardCustomProps> = ({title, avatar, className, defaul
             </Collapse>
         </Card>
     );
-}
+};
 
 export default CardCustom;

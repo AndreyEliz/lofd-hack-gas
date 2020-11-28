@@ -5,7 +5,7 @@ import { selectJobList } from 'reducers/jobList.reducer';
 import { useParams } from 'hooks/router.hooks';
 import CardCustom from 'components/CardCustom/CardCustom';
 import { CardContent } from '@material-ui/core';
-import VacancyCoreData from 'components/Vacancy/VacancyCoreData';
+import VacancyCoreData from 'components/VacancyStep/VacancyCoreData';
 import Typography from '@material-ui/core/Typography';
 import ChipsField from 'components/ChipsField/ChipsField';
 import CandidateList from './CandidatesList/CandidatesList';
@@ -54,7 +54,7 @@ const ManageJobPage: React.FC = () => {
                         <div dangerouslySetInnerHTML={{ __html: vacancy.summary }} />
                     </div>}
                     <VacancyCoreData data={vacancy}/>
-                    {vacancy.benefits && 
+                    {vacancy.benefits &&
                     <div>
                         <Typography component="div"  variant="body2" color="textSecondary">
                             Бонусы:

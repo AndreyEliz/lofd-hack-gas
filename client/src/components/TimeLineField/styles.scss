@@ -1,0 +1,19 @@
+.buttons {
+    visibility: hidden;
+}
+
+.events {
+    height: 14px !important;
+}
+
+.dot-label {
+  padding-bottom: 35px !important;
+
+  & > span {
+    width: 48px !important;
+    height: 48px !important;
+    bottom: -16px !important;
+    left: 19.5px !important;
+    border-width: 3px !important;
+  }
+}
