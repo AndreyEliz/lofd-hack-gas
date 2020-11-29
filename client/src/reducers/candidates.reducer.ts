@@ -1,5 +1,5 @@
 import {
-    GET_CANDIDATES_LIST
+    GET_ALL_CANDIDATES
 } from 'actions/action-types';
 import { ICV } from 'store/models/cvModel';
 import { CANDIDATES } from '../store/mockData/candidates';
@@ -16,10 +16,11 @@ const initialState: ICandidateListState = {
 
 const candidatesList = (state=initialState, action: any) => {
     const reducers:any = {
-        [GET_CANDIDATES_LIST]: () => ({...state, candidates: action.data}),
+        [GET_ALL_CANDIDATES]: () => ({...state, candidates: action.data}),
         [ADD_NEW_CANDIDATE]: () => ({
             ...state,
-            candidates: [...state.candidates, {...action.data, id: state.candidates.length+1, status: 'new'}]}),
+            candidates: [...state.candidates, {...action.data, id: state.candidates.length+1}]
+        })
     };
 
     return (reducers[action.type]  && reducers[action.type]()) || state

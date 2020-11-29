@@ -7,6 +7,8 @@ import TimeLineField from 'components/TimeLineField/TimeLineField';
 import VacancyStep from 'components/VacancyStep/VacancyStep';
 import CVStep from 'components/CVStep/CVStep';
 import OtherStep from 'components/OtherStep/OtherStep';
+import { postFile } from 'sfapi';
+import { API_URL } from 'config';
 
 interface TimeLineData {
     value: number;
@@ -17,6 +19,7 @@ const VacancyPage: React.FC = () => {
     const {id} = useParams();
     const vacancy = useSelector(selectJobList).find((job:IJob) => job.id == id);
     const [timeLineData, setTimeLineData] = useState<TimeLineData>({ value: 0, previous: 0 });
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const updateStep = (step: number) => {
         setTimeLineData({ value: step, previous: timeLineData.value })
     };
@@ -31,9 +34,27 @@ const VacancyPage: React.FC = () => {
         updateStep(nextStep);
     };
     const handleSend = (e: ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-console.log('▓▓▓Files:', files);
-        doNextStep(1);
+        const files: any = e.target.files;
+        setIsLoading(true)
+        const formData = new FormData();
+
+        formData.append('file', files[0]);
+
+        fetch(`${API_URL}/api/candidates/uploadCsv`, {
+            method: 'POST',
+            body: formData,
+            headers:{
+                        // 'content-type': 'multipart/form-data',
+                    }
+        }).then((response:any) => {
+            // const result = response.json();
+            setIsLoading(false)
+            doNextStep(1);
+        }).catch((error:any) => {
+            console.error('Ошибка:', error);
+            setIsLoading(false)
+        })
+        
     };
     const handleSubmitCV = () => {
         doNextStep(2);

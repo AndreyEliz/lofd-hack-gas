@@ -12,15 +12,15 @@ import Button from '@material-ui/core/Button';
 import { SKILLS } from "constants/constants";
 
 enum INPUT_NAMES {
-    Fio = 'Fio',
-    Label = 'Label',
-    Area = 'Area',
+    Fio = 'fio',
+    Label = 'label',
+    Area = 'area',
     // DateOfBirth = 'DateOfBirth',
-    Email = 'Email',
-    Phone = 'Phone',
-    Skype = 'Skype',
-    Site = 'Site',
-    Skills = 'Skills',
+    Email = 'email',
+    Phone = 'phone',
+    Skype = 'skype',
+    Site = 'site',
+    Skills = 'skills',
 }
 
 const INPUT_LABELS: { [key: string]: string } = {
@@ -74,9 +74,11 @@ const CVStep = ({defaultOpen = true, onSubmit }: ICVStepProps) => {
 console.log('▓▓▓CV:', data);
 
         dispatch(addNewCandidate({
-            ...data,
+            fio: data.fio,
+            label: data.label,
+            area: data.area,
+            skills: data.skills,
             contacts: {
-                id: 0,
                 email: data[INPUT_NAMES.Email],
                 phone: data[INPUT_NAMES.Phone],
                 skype: data[INPUT_NAMES.Skype],
@@ -89,14 +91,6 @@ console.log('▓▓▓CV:', data);
             quality: 10,
             type: null,
             education: [
-                {
-                    id: 0,
-                    title: "???",
-                    area: "????????????????",
-                    degree: "????????",
-                    startDate: "2015-01-01T00:00:00",
-                    endDate: "2020-01-10T00:00:00"
-                }
             ],
             languages: [
                 {
@@ -104,29 +98,16 @@ console.log('▓▓▓CV:', data);
                     name: "Русский",
                     level: "родной"
                 },
-                {
-                    id: 2,
-                    name: "???????",
-                    level: "??????"
-                },
             ],
-            publication: [
-                {
-                    id: 0,
-                    name: "Python vs .Net",
-                    publisher: "https://habr.com/",
-                    releaseDate: "2020-05-05T00:00:00",
-                    summary: "Описание сравнения  языков",
-                }
-            ],
-            id:0
+            publication: [],
+            dateOfBirth: new Date()
         }));
         onSubmit();
     };
 
     return (
         <div className={classes.wrapper}>
-            <CardCustom title="Данные о себе" defaultOpen={defaultOpen}>
+            <CardCustom title="Личные данные" defaultOpen={defaultOpen}>
                 <CardContent>
                     <form onSubmit={handleSubmit(doSendCV)}>
                         <FormControl className={classes.input}>

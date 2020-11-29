@@ -101,7 +101,7 @@ const AppTopBar: React.FC<AppTopBarProps> = ({handleDrawerOpen, open}) => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" noWrap className={classes.title} onClick={() => navigate('')}>
-                    <b>TEST</b>
+                    <b>ГАЗПРОМ</b>банк
                 </Typography>
                 <div className={classes.search}>
                     <div className={classes.searchIcon}>

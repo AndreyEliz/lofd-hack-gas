@@ -46,7 +46,7 @@ export interface ICV {
     languages: ILanguage[]
     salary?: ISalaryRate
     skills: string[],
-    id: number | string
+    id?: number | string
     internal: boolean
     status: string
     source: string
