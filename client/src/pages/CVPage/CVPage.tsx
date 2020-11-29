@@ -125,7 +125,8 @@ const CVPage: React.FC = () => {
                                         Иностранные языки:
                                     </Typography>
                                     <ChipsField
-                                        options={cv.languages.map(({name, level}: ILanguage) => `${name}: ${level.toLowerCase()}`)}/>
+                                        options={cv.languages.map(({language, level}: ILanguage) => `${language}: ${level.toLowerCase()}`)}
+                                    />
                                 </div>
                                 <div className={classes.wrapperField}>
                                     <Typography variant="body2" color="textSecondary">
