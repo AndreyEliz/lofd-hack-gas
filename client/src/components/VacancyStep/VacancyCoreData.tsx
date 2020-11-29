@@ -37,7 +37,7 @@ const VacancyCoreData: React.FC<IVacancyCoreDataProps> = ({data}) => {
                         Иностранные языки:
                     </Typography>
                     <ChipsField
-                        options={data.languages.map(({language, level}: ILanguage) => `${name}: ${level.toLowerCase()}`)}/>
+                        options={data.languages.map(({language, level}: ILanguage) => `${language}: ${level.toLowerCase()}`)}/>
                 </div>
             )}
         </div>
