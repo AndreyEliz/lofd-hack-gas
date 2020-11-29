@@ -23,7 +23,9 @@ const buildList = (
 ) => {
     return (
         <>
-            {title && <p>{title}</p>}
+            <Typography variant="body2" color="textSecondary">
+                {title}
+            </Typography>
             <ul>
                 {listDatas.map((data: string, idx: number) => (
                     <li key={`list-${Math.random().toString(16)}:${idx}`}>{data}</li>
@@ -37,11 +39,12 @@ const CVPage: React.FC = () => {
     const classes = useStyles();
     const {id} = useParams();
     const cv = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
+    const jobs: IJob[] = useSelector(selectJobList).filter((job:IJob) => job.id <= 2);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(getAllCandidatesList())
-    }, [dispatch])
+    }, [dispatch]);
 
     if (!cv) {
         return (
@@ -83,14 +86,6 @@ const CVPage: React.FC = () => {
         }
     );
 
-    const jobs: IJob[] = useSelector(selectJobList).filter((job:IJob) => job.id <= 2);
-    const jobList = filterJobs(jobs, {
-        new: false,
-        open: false,
-        published: false,
-        closed: false,
-    });
-
     const missingSkills: string[] = [];
 
     SKILLS.every((skill: string) => {
@@ -116,18 +111,14 @@ const CVPage: React.FC = () => {
                                     <Typography variant="body2" color="textSecondary">Сфера: {cv.area}</Typography>
                                 </div>
                                 <div className={classes.wrapperField}>
-                                    <Typography variant="body2" color="textSecondary">
-                                        {buildList(contacts, 'Контакты')}
-                                    </Typography>
+                                    {buildList(contacts, 'Контакты')}
                                 </div>
                                 <div className={classes.wrapperField}>
                                     <Typography variant="body2" color="textSecondary">Ключевые навыки:</Typography>
                                     <ChipsField options={cv.skills}/>
                                 </div>
                                 <div className={classes.wrapperField}>
-                                    <Typography variant="body2" color="textSecondary">
-                                        {buildList(educations, 'Образование')}
-                                    </Typography>
+                                    {buildList(educations, 'Образование')}
                                 </div>
                                 <div className={classes.wrapperField}>
                                     <Typography variant="body2" color="textSecondary">
@@ -156,7 +147,7 @@ const CVPage: React.FC = () => {
             </CardCustom>
             <CardCustom title='Подходящие вакансии'>
                 <div className={classes.jobsWrapper}>
-                    {jobList.map((job: IJob) => <JobListItem key={job.id} data={job}/>)}
+                    {jobs.map((job: IJob) => <JobListItem key={job.id} data={job}/>)}
                 </div>
             </CardCustom>
         </>
