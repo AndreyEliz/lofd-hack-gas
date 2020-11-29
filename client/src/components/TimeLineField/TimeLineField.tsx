@@ -15,7 +15,6 @@ const TimeLineField = ({ index, indexClick, values}: ITimeLineField) => {
                 width: '800px',
                 height: '100px',
                 margin: '0 auto',
-                backgroundColor: '#ff000'
             }}
         >
             <HorizontalTimeline

@@ -3,13 +3,13 @@ import { ISalaryRate, ILanguage } from './helpers';
 interface IContacts {
     email: string
     phone: string
-    skype: string
-    site: string
+    skype?: string
+    site?: string
     id?: string | number
     candidateId? : string | number
 }
 
-interface IEducation {
+export interface IEducation {
     id: string | number
     title: string
     area: string // Computer Science, engeneering, etc
