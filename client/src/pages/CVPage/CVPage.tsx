@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {ICV} from 'store/models/cvModel';
 import {useStyles} from './styles';
 import { selectCandidatesList } from 'reducers/candidates.reducer';
@@ -10,6 +10,7 @@ import CardCustom from 'components/CardCustom/CardCustom';
 import ChipsField from 'components/ChipsField/ChipsField';
 import {IEducation} from 'store/models/cvModel';
 import {ILanguage} from 'store/models/helpers';
+import { getAllCandidatesList } from 'actions/candidates.actions';
 
 const buildList = (
     listDatas: string[],
@@ -31,6 +32,11 @@ const CVPage: React.FC = () => {
     const classes = useStyles();
     const {id} = useParams();
     const cv = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
+
+    const dispatch = useDispatch()
+    React.useEffect(() => {
+        dispatch(getAllCandidatesList())
+    }, [dispatch])
 
     if (!cv) {
         return (
