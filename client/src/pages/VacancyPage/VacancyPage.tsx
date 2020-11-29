@@ -30,6 +30,11 @@ const VacancyPage: React.FC = () => {
         dispatch(getAllCandidatesList())
     }, [dispatch])
 
+    const getPersonalData = (response:Response) => {
+        const json = response.json();
+        console.log(response)
+    }
+
     const updateStep = (step: number) => {
         setTimeLineData({ value: step, previous: timeLineData.value })
     };
@@ -58,7 +63,7 @@ const VacancyPage: React.FC = () => {
                     }
         }).then((response:any) => {
             setIsLoading(false)
-            // getPersonalData(response)
+            getPersonalData(response)
             doNextStep(1);
         }).catch((error:any) => {
             console.error('Ошибка:', error);

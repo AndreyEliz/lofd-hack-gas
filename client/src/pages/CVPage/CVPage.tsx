@@ -31,7 +31,7 @@ const buildList = (
 const CVPage: React.FC = () => {
     const classes = useStyles();
     const {id} = useParams();
-    const cv = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
+    const cv: ICV = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
 
     const dispatch = useDispatch()
     React.useEffect(() => {
@@ -106,7 +106,7 @@ const CVPage: React.FC = () => {
                                     Иностранные языки:
                                 </Typography>
                                 <ChipsField
-                                    options={cv.languages.map(({name, level}: ILanguage) => `${name}: ${level.toLowerCase()}`)}/>
+                                    options={cv.languages.map(({language, level}: ILanguage) => `${language}: ${level.toLowerCase()}`)}/>
                             </div>
                         </Grid>
                     </Grid>
