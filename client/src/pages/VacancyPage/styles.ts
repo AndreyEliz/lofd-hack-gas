@@ -7,5 +7,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
         justifyContent: 'center',
         height: 500,
         width: '100%'
+    },
+    loader:{
+        margin: 100
     }
 }));

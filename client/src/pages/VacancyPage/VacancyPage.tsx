@@ -30,9 +30,22 @@ const VacancyPage: React.FC = () => {
         dispatch(getAllCandidatesList())
     }, [dispatch])
 
+    const [persData, setPersData] = React.useState({})
+
     const getPersonalData = (response:Response) => {
-        const json = response.json();
-        console.log(response)
+        response.json().then((res:any) => {
+            if (res?.result.status === "succeeded") {
+                try {
+                    const analyzis = res.result.analyzeResult;
+                    const docResult = analyzis.documentResults[0].fields;
+                    const data = {
+                        phone: docResult.MerchantPhoneNumber.valuePhoneNumber,
+                        fio: docResult.MerchantName.valueString
+                    }
+                    setPersData(data)
+                } catch {}
+            }
+        });
     }
 
     const updateStep = (step: number) => {
@@ -85,7 +98,7 @@ const VacancyPage: React.FC = () => {
         <>
         {isLoading ? 
         <div className={classes.loaderWrapper}>
-            <CircularProgress />
+            <CircularProgress className={classes.loader}/>
         </div>
         :
         <div>
@@ -102,6 +115,7 @@ const VacancyPage: React.FC = () => {
             {timeLineData.value === 1 && (
                 <CVStep
                     defaultOpen
+                    initialData={persData}
                     onSubmit={handleSubmitCV}
                 />
             )}
