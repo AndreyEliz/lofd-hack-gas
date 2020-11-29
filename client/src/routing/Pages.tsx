@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import HomePage from 'pages/HomePage/HomePage';
 import CreateJobPage from '../pages/CreateJobPage/CreateJobPage';
-import JobsPage from '../pages/JobsPage.tsx/JobsListPage';
+import JobsPage from '../pages/JobsPage/JobsListPage';
 import VacancyPage from 'pages/VacancyPage/VacancyPage';
 import ManageJobPage from 'pages/ManageJobPage/ManageJob';
 import CVPage from 'pages/CVPage/CVPage';
