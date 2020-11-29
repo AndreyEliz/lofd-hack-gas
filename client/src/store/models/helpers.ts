@@ -4,7 +4,7 @@ export interface ISalaryRate {
 }
 
 export interface ILanguage {
-    name: string
+    language: string
     level: string
     id?: string | number
 }

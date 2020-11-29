@@ -9,7 +9,7 @@ const testJob: IJob = {
     mainSkills: ['JavaScript', 'React', 'html', 'css'],
     secondarySkills: [],
     salaryRate: {from: 150000, to: 200000},
-    languages: [{name: 'English', level: 'intermediate'}],
+    languages: [{language: 'English', level: 'intermediate'}],
     benefits: '<p><strong>Мы предлагаем:</strong></p><ul> <li>Высокий уровень ежемесячного дохода.</li> <li>Возможность профессионального роста и развития.</li> <li>Ежеквартальное (система целей и ключевых показателей) и годовое премирование.</li> <li>Расширенный социальный пакет: полный пакет ДМС, страховка при выезде за рубеж, обучение.</li> <li>Материальную помощь к отпуску.</li> <li>Ежегодный оплачиваемый отпуск 30 дней.</li> <li>Скидки на абонементы в фитнес-клубы.</li> <li>Уникальную корпоративную программу приобретения автотранспорта.</li> </ul>',
     activeCandidates: 5,
     passedCandidates: 0,

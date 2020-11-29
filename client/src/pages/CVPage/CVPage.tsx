@@ -38,7 +38,7 @@ const buildList = (
 const CVPage: React.FC = () => {
     const classes = useStyles();
     const {id} = useParams();
-    const cv = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
+    const cv: ICV = useSelector(selectCandidatesList).find((candidate:ICV) => candidate.id == id);
     const jobs: IJob[] = useSelector(selectJobList).filter((job:IJob) => job.id <= 2);
 
     const dispatch = useDispatch();

@@ -95,7 +95,7 @@ console.log('▓▓▓CV:', data);
             languages: [
                 {
                     id: 1,
-                    name: "Русский",
+                    language: "Русский",
                     level: "родной"
                 },
             ],
