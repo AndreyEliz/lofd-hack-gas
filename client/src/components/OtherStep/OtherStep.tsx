@@ -19,7 +19,7 @@ const OtherStep = ({
             <CardCustom defaultOpen={defaultOpen} title={`Шаг ${step+1}`}>
                 <Grid container spacing={2} className={classes.mainGrid}>
                     <Typography component="div"  variant="body2" color="textSecondary">
-                        CV
+                        Контент данного шага в стадии разработки
                     </Typography>
                 </Grid>
             </CardCustom>
