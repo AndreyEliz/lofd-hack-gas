@@ -39,7 +39,7 @@ const CVPage: React.FC = () => {
 
     if (!cv) {
         return (
-            <CardCustom title='О вакансии'>
+            <CardCustom title='CV'>
                 <Grid container spacing={2} className={classes.mainGrid}>
                     <Typography component="div" variant="body2" color="textSecondary">
                         Нет данных о CV
