@@ -22,5 +22,10 @@ export const useStyles = makeStyles((theme) => ({
         float: 'right',
         marginRight: theme.spacing(4),
         marginBottom: theme.spacing(2),
+    },
+    jobsWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
     }
 }));

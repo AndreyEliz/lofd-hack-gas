@@ -3,7 +3,7 @@ export const WORK_TYPES = ['Remote', 'Fulltime', 'Parttime']
 export const SKILLS = [
     'Web-Design',
     'Design',
-    'Abode',
+    'Adobe',
     'Adobe Acrobat',
     'Adobe Illustrator',
     'Adobe InDesign',
@@ -33,4 +33,4 @@ export const SKILLS = [
     'SVN',
     'V-Ray',
     'Web Design',
-]
+];

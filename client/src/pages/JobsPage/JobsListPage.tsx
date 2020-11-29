@@ -25,10 +25,10 @@ const columns = [
     { field: 'activeCandidates', headerName: 'Активные кандидаты', width: 200 },
 ]
 
-const filterJobs = (jobs: IJob[], params: any) =>  jobs.filter((job:IJob) => {
-        if (!params.new && !params.open && !params.public && !params.ready) return true
-        else return params[job.status]
-    })
+export const filterJobs = (jobs: IJob[], params: any) => jobs.filter((job: IJob) => {
+    if (!params.new && !params.open && !params.public && !params.ready) return true
+    else return params[job.status]
+})
 
 const JobsPage: React.FC = () => {
     const classes = useStyles()
@@ -52,7 +52,7 @@ const JobsPage: React.FC = () => {
     return (
         <>
         <CardCustom className={classes.filters} title="Настройки отображения" defaultOpen={false}>
-            <CardContent>                
+            <CardContent>
                     <FormControlLabel
                         control={
                         <Checkbox
@@ -99,14 +99,14 @@ const JobsPage: React.FC = () => {
                     />
                     <Tooltip title="Сменить режим отображения">
                         <span>
-                            <Button aria-label="grid-view" onClick={toggleView} startIcon={<AppsIcon />} size="small">                                
+                            <Button aria-label="grid-view" onClick={toggleView} startIcon={<AppsIcon />} size="small">
                                 отображать в таблице
                             </Button>
                         </span>
                     </Tooltip>
             </CardContent>
         </CardCustom>
-        {!gridView ? 
+        {!gridView ?
         <div className={classes.jobsWrapper}>
             {jobList.map((job) => <JobListItem key={job.id} data={job}/>)}
         </div>
@@ -117,7 +117,7 @@ const JobsPage: React.FC = () => {
             </CardContent>
         </CardCustom>
         }
-        
+
         </>
     );
 }
