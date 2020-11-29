@@ -7,8 +7,10 @@ import TimeLineField from 'components/TimeLineField/TimeLineField';
 import VacancyStep from 'components/VacancyStep/VacancyStep';
 import CVStep from 'components/CVStep/CVStep';
 import OtherStep from 'components/OtherStep/OtherStep';
-import { postFile } from 'sfapi';
+import { postFile, postJSON } from 'sfapi';
 import { API_URL } from 'config';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useStyles } from './styles';
 
 interface TimeLineData {
     value: number;
@@ -20,6 +22,8 @@ const VacancyPage: React.FC = () => {
     const vacancy = useSelector(selectJobList).find((job:IJob) => job.id == id);
     const [timeLineData, setTimeLineData] = useState<TimeLineData>({ value: 0, previous: 0 });
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const classes = useStyles()
+
     const updateStep = (step: number) => {
         setTimeLineData({ value: step, previous: timeLineData.value })
     };
@@ -47,14 +51,13 @@ const VacancyPage: React.FC = () => {
                         // 'content-type': 'multipart/form-data',
                     }
         }).then((response:any) => {
-            // const result = response.json();
             setIsLoading(false)
             doNextStep(1);
         }).catch((error:any) => {
             console.error('Ошибка:', error);
             setIsLoading(false)
         })
-        
+
     };
     const handleSubmitCV = () => {
         doNextStep(2);
@@ -66,20 +69,26 @@ const VacancyPage: React.FC = () => {
     };
 
     return (
+        <>
+        {isLoading ? 
+        <div className={classes.loaderWrapper}>
+            <CircularProgress />
+        </div>
+        :
         <div>
             <TimeLineField
                 index={timeLineData.value}
                 indexClick={handleIndexClick}
                 values={['Шаг 1', 'Шаг 2', 'Шаг 3', 'Шаг 4', 'Шаг 5']}
             />
-            <VacancyStep
+            {timeLineData.value === 0 && <VacancyStep
                 data={vacancy}
                 onSend={handleSend}
-                defaultOpen={timeLineData.value === 0}
-            />
-            {timeLineData.value >= 1 && (
+                defaultOpen
+            />}
+            {timeLineData.value === 1 && (
                 <CVStep
-                    defaultOpen={timeLineData.value === 1}
+                    defaultOpen
                     onSubmit={handleSubmitCV}
                 />
             )}
@@ -88,7 +97,8 @@ const VacancyPage: React.FC = () => {
                     step={timeLineData.value}
                 />
             )}
-        </div>
+        </div>}
+        </>
     );
 };
 
