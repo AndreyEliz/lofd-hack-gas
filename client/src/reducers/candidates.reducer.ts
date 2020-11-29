@@ -2,15 +2,16 @@ import {
     GET_ALL_CANDIDATES
 } from 'actions/action-types';
 import { ICV } from 'store/models/cvModel';
-import { CANDIDATES } from '../store/mockData/candidates';
 import {ADD_NEW_CANDIDATE} from "../actions/action-types";
 
 interface ICandidateListState {
     candidates: ICV[]
 }
 
+
 const initialState: ICandidateListState = {
-    candidates: CANDIDATES // []
+    candidates: []
+
 };
 
 

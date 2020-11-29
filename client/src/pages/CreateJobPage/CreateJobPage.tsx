@@ -16,6 +16,7 @@ import CardCustom from 'components/CardCustom/CardCustom';
 import { CardContent } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { addNewJob } from 'actions/jobs.actions';
+import AlertDialog from '../../components/AlertDialog/AlertDialog';
 
 type Inputs = {
     title: string,
@@ -34,9 +35,10 @@ const CreateJobPage: React.FC = () => {
     const { register, handleSubmit, errors, control } = useForm<Inputs>();
     const classes = useStyles();
     const dispatch = useDispatch();
+    const [isDialogOpen, setDialogOpen] = React.useState(false)
 
     const onSubmit = (data:Inputs) => {
-console.log('▓▓▓create job:', data);
+        setDialogOpen(true)
         dispatch(addNewJob({
             ...data,
             status: 'new',
@@ -47,7 +49,12 @@ console.log('▓▓▓create job:', data);
         }))
     };
 
+    const handleDialogClose = () => {
+        setDialogOpen(false)
+    }
+
     return (
+        <>
         <CardCustom title="Подать заявку">
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -116,6 +123,8 @@ console.log('▓▓▓create job:', data);
                 </form>
             </CardContent>
         </CardCustom>
+        <AlertDialog title="Заявка отправлена" open={isDialogOpen} handleClose={handleDialogClose}>Заявка успешно сформирована и отправлена на обработку HR</AlertDialog>
+        </>
     );
 };
 

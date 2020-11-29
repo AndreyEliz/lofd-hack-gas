@@ -9,23 +9,36 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { ColDef } from '@material-ui/data-grid';
+import { deepOrange, deepPurple } from '@material-ui/core/colors'
 import { ICV } from '../../store/models/cvModel';
-import { Checkbox } from '@material-ui/core';
+import { Checkbox, Theme } from '@material-ui/core';
 
 interface ICustomGridProps {
     rows: any[],
     columns: any[],
-    formatValue(row: ICV, col: any): any
+    formatValue(row: ICV, col: any, classes:any): any
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
   },
   container: {
     maxHeight: 440,
   },
-});
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+    },
+    purple: {
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
+    },
+    blue: {
+        color: theme.palette.getContrastText(theme.palette.info.main),
+        backgroundColor: theme.palette.info.main,
+    }
+}));
 
 const CustomGrid: React.FC<ICustomGridProps> = ({rows, columns, formatValue}) => {
   const classes = useStyles();
@@ -46,7 +59,7 @@ const CustomGrid: React.FC<ICustomGridProps> = ({rows, columns, formatValue}) =>
   }
 
   const onRowSelect = () => {
-      
+
   }
 
   return (
@@ -56,10 +69,10 @@ const CustomGrid: React.FC<ICustomGridProps> = ({rows, columns, formatValue}) =>
           <TableHead>
             <TableRow>
             <TableCell padding="checkbox">
-            <Checkbox
-                onChange={onSelectAllClick}
-                inputProps={{ 'aria-label': 'select all' }}
-            />
+                <Checkbox
+                    onChange={onSelectAllClick}
+                    inputProps={{ 'aria-label': 'select all' }}
+                />
             </TableCell>
               {columns.map((column) => (
                 <TableCell
@@ -76,12 +89,14 @@ const CustomGrid: React.FC<ICustomGridProps> = ({rows, columns, formatValue}) =>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    <Checkbox
-                        onChange={onRowSelect}
-                        inputProps={{ 'aria-label': 'select all' }}
-                    />
+                    <TableCell>
+                        <Checkbox
+                            onChange={onRowSelect}
+                            inputProps={{ 'aria-label': 'select all' }}
+                        />
+                    </TableCell>
                   {columns.map((column) => {
-                    const value = formatValue ? formatValue(row, column) : row[column.field];
+                    const value = formatValue ? formatValue(row, column, classes) : row[column.field];
                     return (
                       <TableCell key={column.field} align={column.align}>
                         {value}

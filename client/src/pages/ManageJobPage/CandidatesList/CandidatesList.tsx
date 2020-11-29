@@ -1,15 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CardCustom from 'components/CardCustom/CardCustom';
-import { Avatar, Button, CardContent } from '@material-ui/core';
-import { useParams } from 'hooks/router.hooks';
+import { Avatar, Button } from '@material-ui/core';
 import { selectCandidatesList } from 'reducers/candidates.reducer';
 import { ICV } from 'store/models/cvModel';
 import { useStyles } from './styles';
 import { ColDef } from '@material-ui/data-grid';
 import CustomGrid from 'components/CustomGrid/CustomGrid';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { deepOrange, deepPurple } from '@material-ui/core/colors'
 import LinearWithValueLabel from 'components/Progress/Progress';
 
 const columns: ColDef[] = [
@@ -22,25 +18,7 @@ const columns: ColDef[] = [
     { field: 'status', headerName: 'Статус',  width: 130, }
 ];
 
-const formatCell = (row:any, col:any) => {
-    const useStyles = makeStyles((theme: Theme) =>
-        createStyles({
-            orange: {
-                color: theme.palette.getContrastText(deepOrange[500]),
-                backgroundColor: deepOrange[500],
-            },
-            purple: {
-                color: theme.palette.getContrastText(deepPurple[500]),
-                backgroundColor: deepPurple[500],
-            },
-            blue: {
-                color: theme.palette.getContrastText(theme.palette.info.main),
-                backgroundColor: theme.palette.info.main,
-            }
-        }),
-    );
-    const classes = useStyles();
-
+const formatCell = (row:any, col:any, classes:any) => {
     const data = row[col.field]
     if (col.field=== 'source') {
         return (
@@ -59,37 +37,35 @@ const formatCell = (row:any, col:any) => {
 }
   
 
-const CandidateList: React.FC = () => {
-    const {id} = useParams()
-    const classes = useStyles()
+export const ExternalCandidates = () => {
     const candidates: ICV[] = useSelector(selectCandidatesList)
-    const internalCandidates = candidates.filter((candidate) => candidate.internal)
     const externalCandidates = candidates.filter((candidate) => !candidate.internal)
+    const classes = useStyles()
 
     return (
-        <div>
-            <CardCustom title="Подходящие сотрудники компании" defaultOpen={false}>
-                <CardContent className={classes.candidatesWraper}>
-                    Фильтрация: пока не реализовано
-                    <CustomGrid rows={internalCandidates} columns={columns} formatValue={formatCell}/>
-                </CardContent>
-            </CardCustom>
-            <CardCustom title="Подходящие соискатели" defaultOpen={false}>
-                <CardContent className={classes.candidatesWraper}>
-                    Фильтрация: пока не реализовано
-                    <CustomGrid rows={externalCandidates} columns={columns} formatValue={formatCell} />
-                </CardContent>
-                <Button
-                    className={classes.actionButtons}
-                    variant="contained"
-                    size="small"
-                    color="primary"
-                >
-                    Отправить приглашение
-                </Button>
-            </CardCustom>
-        </div>
+        <>
+            Фильтрация: пока не реализовано
+            <CustomGrid rows={externalCandidates} columns={columns} formatValue={formatCell} />
+            <Button
+                className={classes.actionButtons}
+                variant="contained"
+                size="small"
+                color="primary"
+            >
+                Отправить приглашение
+            </Button>
+        </>
     );
 }
 
-export default CandidateList;
+export const InternalCandidates = () => {
+    const candidates: ICV[] = useSelector(selectCandidatesList)
+    const internalCandidates = candidates.filter((candidate) => candidate.internal)
+
+    return (
+        <>
+            Фильтрация: пока не реализовано
+            <CustomGrid rows={internalCandidates} columns={columns} formatValue={formatCell}/>
+        </>
+    );
+}
