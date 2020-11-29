@@ -5,11 +5,11 @@ import { ICV } from 'store/models/cvModel';
 import { CANDIDATES } from '../store/mockData/candidates';
 import {ADD_NEW_CANDIDATE} from "../actions/action-types";
 
-interface IJobListState {
+interface ICandidateListState {
     candidates: ICV[]
 }
 
-const initialState: IJobListState = {
+const initialState: ICandidateListState = {
     candidates: CANDIDATES // []
 };
 
