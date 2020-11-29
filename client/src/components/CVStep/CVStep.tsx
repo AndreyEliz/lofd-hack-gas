@@ -67,18 +67,15 @@ interface ICVStepProps {
 }
 
 const CVStep = ({defaultOpen = true, onSubmit, initialData={} }: ICVStepProps) => {
-    const { register, handleSubmit, setValue, control } = useForm<Inputs>({
-        defaultValues: {
-            fio: initialData.fio,
-            phone: initialData.phone
-        }
-    });
+    const { register, handleSubmit, setValue, control,} = useForm<Inputs>();
     const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
         setValue('fio', initialData.fio)
         setValue('phone', initialData.phone)
+        
+        
     }, [initialData])
 
     const doSendCV = (data: Inputs) => {
@@ -126,7 +123,9 @@ const CVStep = ({defaultOpen = true, onSubmit, initialData={} }: ICVStepProps) =
                                 inputRef={register({ required: true })}
                                 name={INPUT_NAMES.Fio}
                                 variant="outlined"
-                                defaultValue={initialData.fio || ''}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 fullWidth
                             />
                         </FormControl>
@@ -161,8 +160,10 @@ const CVStep = ({defaultOpen = true, onSubmit, initialData={} }: ICVStepProps) =
                                 label={INPUT_LABELS[INPUT_NAMES.Phone]}
                                 inputRef={register({ required: true })}
                                 name={INPUT_NAMES.Phone}
-                                defaultValue={initialData.phone || ""}
                                 variant="outlined"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 fullWidth
                             />
                         </FormControl>
