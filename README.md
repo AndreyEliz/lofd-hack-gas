@@ -24,3 +24,14 @@
         </rewrite>
     </system.webServer>
 ```
+
+# Клиент
+React + Redux + TS
+## Требования
+1. yarn
+
+## Запуск
+1. cd ./client
+2. yarn install
+3. yarn start
+
