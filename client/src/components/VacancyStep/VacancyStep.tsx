@@ -69,21 +69,22 @@ const VacancyStep = ({
                     </Grid>
                 </Grid>
             </CardCustom>
-            <Button
-                variant="contained"
-                component="label"
-                color="primary"
-                className={classes.uploadButton}
-            >
-                Загрузить резюме
-                <input
-                    name='cv'
-                    type="file"
-                    hidden
-                    accept=".pdf, .doc, .docx"
-                    onChange={onSend}
-                />
-            </Button>
+            <div className={classes.uploadButton}>
+                <Button
+                    variant="contained"
+                    component="label"
+                    color="primary"
+                >
+                    Загрузить резюме
+                    <input
+                        name='cv'
+                        type="file"
+                        hidden
+                        accept=".pdf, .doc, .docx"
+                        onChange={onSend}
+                    />
+                </Button>
+            </div>
         </div>
     );
 };

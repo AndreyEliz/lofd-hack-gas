@@ -12,8 +12,9 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
     uploadButton: {
-        float: 'right',
-        marginRight: theme.spacing(4),
-        marginBottom: theme.spacing(2),
+        display:'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 }));
